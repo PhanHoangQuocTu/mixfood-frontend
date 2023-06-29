@@ -1,0 +1,203 @@
+.wrapper {
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    transition: all 0.3s ease; /* Thêm transition cho hiệu ứng mượt hơn */
+}
+
+.hideBars {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.LogoText {
+    color: var(--text-color);
+    font-size: 32px;
+    font-weight: 700;
+    text-decoration: none;
+    &:hover {
+        color: var(--text-color);
+    }
+
+    img {
+        margin-right: 12px;
+        width: 39px;
+        height: 50px;
+    }
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 1;
+    .listNavbar {
+        display: flex;
+        align-items: center;
+    }
+    .navbarLink {
+        min-width: 145px;
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
+        padding: 18px 16px;
+        opacity: 1; /* Đặt opacity mặc định là 1 */
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin-bottom: 4px;
+}
+
+.popperShow {
+    position: relative;
+    display: flex;
+}
+
+.userIcon {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userIconMain {
+    font-size: 24px;
+}
+
+.userMenu {
+    box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.2);
+    left: -150px !important;
+    top: 50px !important;
+    background-color: var(--primary-color);
+    z-index: 3;
+    button {
+        min-width: 200px;
+        width: 100%;
+        font-size: 24px;
+        line-height: 24px;
+        font-weight: 500;
+        color: var(--text-color);
+        padding: 16px 24px;
+
+        &:hover {
+            background-color: var(--primary-color-hover);
+        }
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .navbar {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-end;
+        .navbarLink {
+            text-align: end;
+            min-width: 120px;
+        }
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .expanded {
+        display: flex !important;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .show {
+        display: flex;
+        padding: 20px 0;
+        ul {
+            opacity: 1; /* Hiển thị danh sách menu khi mở rộng */
+            max-height: 200px; /* Đặt chiều cao tối đa cho danh sách menu */
+        }
+    }
+
+    .dropdown {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .userIcon {
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 12px;
+    }
+
+    .userMenu{
+        z-index: 3;
+    }
+}
+
+@media (max-width: 576px) {
+    .hideBars {
+        margin: 0 16px 0 16px;
+        align-self: flex-end;
+    }
+
+    .navbar {
+        margin: 0;
+        padding: 0;
+    }
+
+    .LogoText {
+        display: flex;
+        font-size: 26px;
+        line-height: 28px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .userMenu {
+        top: 44px !important;
+        z-index: 2;
+
+        button {
+            min-width: 160px;
+            font-size: 20px;
+            line-height: 22px;
+        }
+    }
+
+    .userIcon {
+        margin: 0 16px 16px 0;
+    }
+}

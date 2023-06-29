@@ -5,6 +5,9 @@
 @import 'tailwindcss/utilities';
 
 :root {
+    --primary-color: #FF4500;
+    --primary-color-hover: #fe6932;
+    --text-color: #fff;
 }
 
 html {
@@ -14,4 +17,8 @@ body {
     font-family: 'Poppins', sans-serif !important;
     font-size: 16px;
     font-weight: 400;
+}
+
+a {
+    text-decoration: none;
 }
