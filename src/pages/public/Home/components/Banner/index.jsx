@@ -3,6 +3,7 @@ import styles from './Banner.module.scss'
 
 //image
 import bannerImg from '@/img/Banner/banner.png'
+import { memo } from 'react';
 function Banner() {
     return ( 
         <section className={classNames(styles.wrapper)}>
@@ -18,4 +19,4 @@ function Banner() {
      );
 }
 
-export default Banner;
+export default memo(Banner);

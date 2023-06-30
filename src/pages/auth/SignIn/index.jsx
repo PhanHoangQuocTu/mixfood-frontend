@@ -11,8 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import styles from './SignIn.module.scss';
+import { memo } from 'react';
 
-export default function SignIn() {
+function SignIn() {
   const validationSchema = yup.object().shape({
     email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
     password: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu'),
@@ -97,3 +98,5 @@ export default function SignIn() {
     </FormProvider>
   );
 }
+
+export default memo(SignIn)

@@ -7,8 +7,9 @@ import InputForm from '@/components/InputForm';
 import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './SignUp.module.scss';
+import { memo } from 'react';
 
-export default function SignUp() {
+function SignUp() {
   const validationSchema = yup.object().shape({
     name: yup.string().required('Vui lòng nhập tên'),
     phoneNumber: yup.string().required('Vui lòng nhập số điện thoại'),
@@ -111,3 +112,5 @@ export default function SignUp() {
     </FormProvider>
   );
 }
+
+export default memo(SignUp);

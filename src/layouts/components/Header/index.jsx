@@ -57,12 +57,12 @@ function Header() {
 
     return (
         <div className={classNames(styles.wrapper)}>
-            <div className={classNames(styles.main, 'container', { [styles.expanded]: isExpanded === true })}>
+            <div className={classNames(styles.main, 'container', 'px-0', { [styles.expanded]: isExpanded === true })}>
                 <div className={classNames(styles.hideBars)}>
                     <nav className="navbar">
                         <div className="container-fluid">
                             <Link className={classNames(styles.LogoText, 'mx-0')} to="/">
-                                <img src={logo} alt="logo" className="d-inline-block align-text-top w-[44px] h-[44px]" />
+                                <img src={logo} alt="logo" className={classNames('d-inline-block', 'align-text-top', 'sm:w-[44px]', 'sm:h-[44px]', 'xs:w-[34px]', 'xs:h-[34px]')} />
                                 Mix food
                             </Link>
                         </div>
@@ -74,7 +74,7 @@ function Header() {
                     </button>
                 </div>
                 <div className={classNames(styles.navbar, { [styles.show]: isExpanded === true })}>
-                    <div className={classNames(styles.listNavbar ,{ [styles.dropdown]: isExpanded === true })}>
+                    <div className={classNames(styles.listNavbar, { [styles.dropdown]: isExpanded === true })}>
                         <Link className={classNames(styles.navbarLink)} to="/">Trang chủ</Link>
                         <Link className={classNames(styles.navbarLink)} to="/">Thực đơn</Link>
                         <Link className={classNames(styles.navbarLink)} to="/">Đặt bàn</Link>
