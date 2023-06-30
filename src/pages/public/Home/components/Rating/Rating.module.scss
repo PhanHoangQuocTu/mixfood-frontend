@@ -1,13 +1,14 @@
 .wrapper {
-    margin-top: 140px;
-    margin-bottom: 140px;
+    padding-bottom: 140px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #fafafa;
 }
 
 .title {
+    margin-top: 140px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -28,15 +29,7 @@
 
 .menuSwiper{
     margin-top: 80px;
-    display: flex;
-    justify-content: center;
 }
-
-.menuImg{
-    width: 100%;
-    height: 100%;
-}
-
 
 @media (max-width: 576px){
     .wrapper{

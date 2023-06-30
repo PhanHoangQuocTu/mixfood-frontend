@@ -6,6 +6,7 @@ import Banner from "./components/Banner";
 import BestSeller from "./components/BestSeller";
 import About from "./components/About";
 import Menu from "./components/Menu";
+import Rating from "./components/Rating";
 
 function Home() {
     return (
@@ -14,6 +15,7 @@ function Home() {
             <BestSeller />
             <About />
             <Menu />
+            <Rating />
         </div>
     );
 }
