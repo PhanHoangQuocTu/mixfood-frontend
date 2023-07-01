@@ -76,8 +76,8 @@ function Header() {
                 <div className={classNames(styles.navbar, { [styles.show]: isExpanded === true })}>
                     <div className={classNames(styles.listNavbar, { [styles.dropdown]: isExpanded === true })}>
                         <Link className={classNames(styles.navbarLink)} to="/">Trang chủ</Link>
-                        <Link className={classNames(styles.navbarLink)} to="/">Thực đơn</Link>
-                        <Link className={classNames(styles.navbarLink)} to="/">Đặt bàn</Link>
+                        <Link className={classNames(styles.navbarLink)} to="/book">Đặt bàn</Link>
+                        <a href='https://shopeefood.vn/da-nang/mix-food-lau-nuong' className={classNames(styles.navbarLink)} >Đặt món</a>
                         {user === null &&
                             <Link className={classNames(styles.navbarLink)} to="/signin">Đăng nhập</Link>
                         }

@@ -14,7 +14,7 @@ function BestSeller() {
         <section className={classNames(styles.wrapper, 'container', 'px-0')}>
             <div className={classNames(styles.title)}>
                 <span className={classNames(styles.titleText)}>
-                    Món ăn đặc sắc
+                    Best Seller
                 </span>
                 <img src={titleVector} alt='vector' className={classNames(styles.vector)} />
             </div>

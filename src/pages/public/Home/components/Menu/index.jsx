@@ -70,6 +70,8 @@ function Menu() {
                     <Swiper
                         slidesPerView={1}
                         spaceBetween={10}
+                        autoplay={{delay: 4000}}
+                        pagination={true}
                         modules={modulesSwiper}
                         breakpoints={breakpointsSwiper}
                     >

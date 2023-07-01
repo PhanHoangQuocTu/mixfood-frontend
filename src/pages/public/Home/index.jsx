@@ -7,6 +7,7 @@ import BestSeller from "./components/BestSeller";
 import About from "./components/About";
 import Menu from "./components/Menu";
 import Rating from "./components/Rating";
+import RatingForm from "./components/RatingForm";
 
 function Home() {
     return (
@@ -16,6 +17,7 @@ function Home() {
             <About />
             <Menu />
             <Rating />
+            <RatingForm />
         </div>
     );
 }

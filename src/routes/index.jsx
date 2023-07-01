@@ -1,17 +1,15 @@
+import PrivateLayout from "@/layouts/PrivateLayout"
 import SignIn from "@/pages/auth/SignIn"
 import SignUp from "@/pages/auth/SignUp"
+import Book from "@/pages/private/Book"
 import Home from "@/pages/public/Home"
 
-//public routes
-const publicRoutes = [
+// routes
+const PageRoutes = [
     { path: '/', component: Home },
     { path: '/signin', component: SignIn, layout: null },
     { path: '/signup', component: SignUp, layout: null },
+    { path: '/book' , component: Book, layout: PrivateLayout}
 ]
 
-//private routes
-const privateRoutes = [
-
-]
-
-export { publicRoutes, privateRoutes }
+export { PageRoutes }
