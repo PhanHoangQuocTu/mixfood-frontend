@@ -32,10 +32,10 @@ function Footer() {
                                 <Link to={'/signin'} className="text-reset no-underline hover:text-[#ccc]">Đăng nhập</Link>
                             </p>
                             <p>
-                                <Link to={'/'} className="text-reset no-underline hover:text-[#ccc]">Điều khoản</Link>
+                                <Link to={'/admin'} className="text-reset no-underline hover:text-[#ccc]">Quản trị</Link>
                             </p>
                             <p>
-                                <Link to={'/'} className="text-reset no-underline hover:text-[#ccc]">Tuyển dụng</Link>
+                                <Link to={'/hire'} className="text-reset no-underline hover:text-[#ccc]">Tuyển dụng</Link>
                             </p>
                             <p>
                                 <a href='https://www.facebook.com/mixfoodamthucthai' className="text-reset no-underline hover:text-[#ccc]">Trợ giúp</a>
@@ -44,7 +44,7 @@ function Footer() {
 
                         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                             <h6 className="text-uppercase fw-bold mb-4">Liên hệ</h6>
-                            <p>Địa chỉ: K38/37 Nguyễn Duy Hiệu, TP Đà Nẵng</p>
+                            <p>Địa chỉ: K49 Nguyễn Văn Thoại, TP Đà Nẵng</p>
                             <p>Liên hệ : (+84)905 47 37 28 (A. Vương)</p>
                             <p> Mở cửa : 09:00 ~ 22:00</p>
                         </div>

@@ -3,6 +3,11 @@
     background-color: var(--primary-color);
 }
 
+.textNoWrap{
+    max-width: 120px;
+    white-space: nowrap;
+}
+
 .main {
     width: 100%;
     display: flex;
@@ -54,7 +59,7 @@
         opacity: 1; /* Đặt opacity mặc định là 1 */
 
         &:hover {
-            opacity: 0.7;
+            color: #ccc;
         }
     }
 }
@@ -112,15 +117,49 @@
     }
 }
 
+.dropdownLink {
+    text-align: start;
+    min-width: 145px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 18px 16px;
+    opacity: 1;
+
+    &:hover {
+        color: #ccc;
+    }
+}
+
+.dropdownNavbar {
+    position: relative;
+}
+
+.menuNavbar {
+    display: none;
+    background-color: var(--primary-color);
+    position: absolute;
+    flex-direction: column;
+    left: 0;
+    top: 62px;
+    z-index: 1;
+}
+
+.showDropdown {
+    display: flex !important;
+}
+
 /* Responsive styles */
 @media (max-width: 1200px) {
     .navbar {
         display: none;
         width: 100%;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: flex-start;
         .navbarLink {
-            text-align: end;
+            text-align: start;
             min-width: 120px;
         }
     }
@@ -149,6 +188,12 @@
         flex-direction: column;
     }
 
+    .dropdownLink{
+        max-width: 120px;
+        min-width: 120px;
+        text-align: start;
+    }
+
     .userIcon {
         width: 40px;
         height: 40px;
@@ -163,12 +208,17 @@
     .userMenu {
         z-index: 3;
     }
+
+    .menuNavbar {
+        position: relative;
+        top: 12px;
+    }
 }
 
 @media (max-width: 576px) {
     .hideBars {
         margin: 0 16px 0 16px;
-        align-self: flex-end;
+        align-self: flex-start;
     }
 
     .navbar {
