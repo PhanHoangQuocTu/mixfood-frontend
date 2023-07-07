@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import InputForm from '@/components/InputForm';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 import styles from './BookForm.module.scss';
 
@@ -28,11 +29,21 @@ function BookForm() {
 
     const onSubmit = async (data) => {
         data.note = textArea.current.value;
-        console.log(data)
-        toast.success(
-            'Đã gửi đánh giá. Chúng tôi sẽ tiếp nhận và phát triển thêm dựa trên đánh giá của bạn'
-        );
+        console.log(data);
+
+        try {
+            const response = await axios.post('http://127.0.0.1:3001/api/booking/book', data);
+            console.log(response.data);
+
+            toast.success(
+                'Đặt bàn thành công. Chúng tôi sẽ gọi xác nhận trong vài phút nữa. Cảm ơn Bạn đã ủng hộ'
+            );
+        } catch (error) {
+            console.error('Error creating booking', error);
+            toast.error('Đặt bàn thất bại. Vui lòng thử lại sau');
+        }
     };
+
 
     return (
         <FormProvider {...methods}>

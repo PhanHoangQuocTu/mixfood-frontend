@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import InputForm from '@/components/InputForm';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 import styles from './Form.module.scss';
 import { memo, useRef } from 'react';
@@ -28,13 +29,20 @@ function Form() {
 
     const onSubmit = async (data) => {
         data.rating = textArea.current.value;
-        // Xử lý logic khi gửi form
         console.log(data);
-        toast.success(
-            'Đã gửi đánh giá. Chúng tôi sẽ tiếp nhận và phát triển thêm dựa trên đánh giá của bạn'
-        );
-    };
 
+        try {
+            const response = await axios.post('http://localhost:3001/api/review/send-review', data);
+            console.log(response.data);
+
+            toast.success(
+                'Đã gửi đánh giá. Chúng tôi sẽ tiếp nhận và phát triển thêm dựa trên đánh giá của bạn'
+            );
+        } catch (error) {
+            console.error('Error sending review', error);
+            toast.error('Gửi đánh giá thất bại. Vui lòng thử lại sau');
+        }
+    };
 
     return (
         <FormProvider {...methods}>

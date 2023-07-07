@@ -60,7 +60,7 @@ function SignIn() {
               id='email'
               name='email'
               className={`${styles.signInFormInput}`}
-              placeholder='Email or Phone Number'
+              placeholder='Phone Number'
             />
           </div>
           <div className={classNames(styles.InputWrapper)}>
