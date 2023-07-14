@@ -14,7 +14,10 @@ function HireForm() {
 
     const validationSchema = yup.object().shape({
         name: yup.string().required('Họ và tên là bắt buộc'),
-        phone: yup.string().required('Số điện thoại là bắt buộc'),
+        phone: yup
+            .string()
+            .required('Số điện thoại là bắt buộc')
+            .matches(/^(0|\+84)[1-9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
         email: yup.string().email('Email không hợp lệ').required('Email là bắt buộc'),
         question: yup.string().required('Bạn hãy trả lời câu hỏi')
     });

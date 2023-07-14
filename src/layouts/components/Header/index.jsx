@@ -42,6 +42,10 @@ function Header() {
         setShowMenu(!showMenu);
     };
 
+    const handlePushToAccount = () => {
+        window.location.href = '/account'
+    }
+
     const handleOutsideClick = (event) => {
         if (popperRef.current && !popperRef.current.contains(event.target)) {
             setShowMenu(false);
@@ -111,7 +115,7 @@ function Header() {
                             <Popper placement="bottom" referenceElement={popperRef.current}>
                                 {({ ref, style, placement }) => (
                                     <div ref={ref} style={style} data-placement={placement} className={classNames(styles.userMenu)} onClick={handleOutsideClick}>
-                                        <button>View Profile</button>
+                                        <button onClick={handlePushToAccount}>View Profile</button>
                                         <button onClick={handleLogout}>Logout</button>
                                     </div>
                                 )}

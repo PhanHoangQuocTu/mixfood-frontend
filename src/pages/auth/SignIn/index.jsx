@@ -15,7 +15,10 @@ import { memo } from 'react';
 
 function SignIn() {
   const validationSchema = yup.object().shape({
-    email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
+    phone: yup
+      .string()
+      .required('Số điện thoại là bắt buộc')
+      .matches(/^(0|\+84)[1-9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
     password: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu'),
   });
 
@@ -25,13 +28,12 @@ function SignIn() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.get('https://fakestoreapi.com/users');
-      const users = response.data;
-      const user = users.find((user) => user.email === data.email && user.password === data.password);
+      const response = await axios.post('http://127.0.0.1:3001/api/auth/sign-in', data);
+      const user = response.data;
 
       if (user) {
         console.log(user)
-        Cookies.set('mixfooduser', user);
+        Cookies.set('mixfooduser', JSON.stringify(user));
         toast.success('Đăng nhập thành công');
         setTimeout(() => {
           window.location.href = '/';
@@ -41,10 +43,8 @@ function SignIn() {
       }
     } catch (error) {
       toast.error('Đăng nhập thất bại');
-      console.log('Đăng nhập thất bại:', error);
     }
   };
-
 
   return (
     <FormProvider {...methods}>
@@ -52,13 +52,13 @@ function SignIn() {
         <form onSubmit={methods.handleSubmit(onSubmit)} method='POST' className={`${styles.formWrapper}`}>
           <span className={classNames(styles.title)}>Đăng nhập</span>
           <div className={classNames(styles.InputWrapper)}>
-            <label className={classNames(styles.labelInput)} htmlFor='email'>
-              Email
+            <label className={classNames(styles.labelInput)} htmlFor='phone'>
+              Số điện thoại
             </label>
             <InputForm
               type='text'
-              id='email'
-              name='email'
+              id='phone'
+              name='phone'
               className={`${styles.signInFormInput}`}
               placeholder='Phone Number'
             />

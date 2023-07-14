@@ -1,4 +1,4 @@
-import { memo, useRef } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { useForm, FormProvider } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,14 +9,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 import styles from './BookForm.module.scss';
+import Cookies from "js-cookie";
 
 function BookForm() {
     const textArea = useRef();
+    const [user, setUser] = useState()
 
     const validationSchema = yup.object().shape({
         name: yup.string().required('Họ và tên là bắt buộc'),
-        phone: yup.string().required('Số điện thoại là bắt buộc'),
-        email: yup.string().email('Email không hợp lệ').required('Email là bắt buộc'),
         date: yup.string().required('Ngày là bắt buộc'),
         time: yup.string().required('Giờ là bắt buộc'),
     });
@@ -25,22 +25,36 @@ function BookForm() {
         resolver: yupResolver(validationSchema),
     });
 
+    useEffect(() => {
+        const userLogin = Cookies.get('mixfooduser') ? JSON.parse(Cookies.get('mixfooduser')) : null;
+        if (userLogin) {
+            setUser(userLogin);
+        }
+    }, [])
+
     const { handleSubmit } = methods;
 
     const onSubmit = async (data) => {
-        data.note = textArea.current.value;
-        console.log(data);
-
-        try {
-            const response = await axios.post('http://127.0.0.1:3001/api/booking/book', data);
-            console.log(response.data);
-
-            toast.success(
-                'Đặt bàn thành công. Chúng tôi sẽ gọi xác nhận trong vài phút nữa. Cảm ơn Bạn đã ủng hộ'
-            );
-        } catch (error) {
-            console.error('Error creating booking', error);
-            toast.error('Đặt bàn thất bại. Vui lòng thử lại sau');
+        if (user?.isVerified === true) {
+            data.note = textArea.current.value;
+            const formData = {
+                ...data,
+                phone: user?.phone,
+                email: user?.email,
+            }
+            try {
+                const response = await axios.post('http://127.0.0.1:3001/api/booking/book', formData);
+                if (response) {
+                    toast.success(
+                        'Đặt bàn thành công. Chúng tôi sẽ gọi xác nhận trong vài phút nữa. Cảm ơn Bạn đã ủng hộ'
+                    );
+                }
+            } catch (error) {
+                toast.error('Đặt bàn thất bại. Hãy kiểm tra lại thông tin và thử lại');
+            }
+        }
+        else {
+            toast.error('Hãy xác thực tài khoản trước khi đặt bàn')
         }
     };
 
@@ -72,16 +86,20 @@ function BookForm() {
                         <InputForm
                             type='text'
                             name='phone'
-                            className={classNames(styles.FormInput)}
+                            className={classNames(styles.FormInput, 'opacity-50')}
                             placeholder='Nhập số điện thoại'
+                            value={user?.phone}
+                            disabled
                         />
                     </div>
                     <div className={classNames(styles.InputWrapper)}>
                         <InputForm
                             type='text'
                             name='email'
-                            className={classNames(styles.FormInput)}
+                            className={classNames(styles.FormInput, 'opacity-50')}
                             placeholder='Nhập email'
+                            value={user?.email}
+                            disabled
                         />
                     </div>
                     <div className={classNames(styles.InputWrapper)}>

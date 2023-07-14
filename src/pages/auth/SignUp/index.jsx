@@ -1,18 +1,24 @@
-import { Link } from 'react-router-dom';
+import { memo } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
 import InputForm from '@/components/InputForm';
-import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './SignUp.module.scss';
-import { memo } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 function SignUp() {
+  const navigate = useNavigate();
   const validationSchema = yup.object().shape({
     name: yup.string().required('Vui lòng nhập tên'),
-    phoneNumber: yup.string().required('Vui lòng nhập số điện thoại'),
+    phone: yup
+      .string()
+      .required('Số điện thoại là bắt buộc')
+      .matches(/^(0|\+84)[1-9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
     email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
     password: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu'),
     confirmPassword: yup.string()
@@ -25,12 +31,27 @@ function SignUp() {
   });
 
   const onSubmit = async (data) => {
-    // Gửi dữ liệu đăng ký đi
-    console.log(data)
+    try {
+      // Gửi dữ liệu đăng ký đi
+      const response = await axios.post('http://127.0.0.1:3001/api/auth/sign-up', data);
+      if (response) {
+        toast.success('Đăng ký tài khoản thành công.')
+        toast.success('Chúng tôi đã gửi mã xác thực vào gmail. Hãy xác thực để tiếp tục sử dụng dịch vụ.')
+        toast.warn('Mã xác thực sẽ gửi đến bạn trong khoảng 1-2 phút.')
+        setTimeout(() => {
+          navigate('/signin')
+        }, 3000)
+      }
+
+    } catch (error) {
+      toast.error(error.response.data.error)
+    }
   };
+
 
   return (
     <FormProvider {...methods}>
+      <ToastContainer />
       <div className={classNames(styles.wrapper)}>
         <form onSubmit={methods.handleSubmit(onSubmit)} method='POST' className={`${styles.formWrapper}`}>
           <span className={classNames(styles.title)}>Đăng ký</span>
@@ -47,13 +68,13 @@ function SignUp() {
             />
           </div>
           <div className={classNames(styles.InputWrapper)}>
-            <label className={classNames(styles.labelInput)} htmlFor='phoneNumber'>
+            <label className={classNames(styles.labelInput)} htmlFor='phone'>
               Số điện thoại
             </label>
             <InputForm
               type='text'
-              id='phoneNumber'
-              name='phoneNumber'
+              id='phone'
+              name='phone'
               className={`${styles.signUpFormInput}`}
               placeholder='Số điện thoại'
             />
