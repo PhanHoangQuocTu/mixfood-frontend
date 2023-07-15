@@ -97,7 +97,7 @@ function Header() {
                                 </div>
                                 <div className={classNames('flex', 'items-center', 'gap-[12px]')}>
                                     <FontAwesomeIcon icon={faAngleRight} />
-                                    <a href='https://www.facebook.com/messages/t/661843517545518' className={classNames(styles.navbarLink)} >Messengers</a>
+                                    <a href='https://www.facebook.com/messages/t/661843517545518' className={classNames(styles.navbarLink)} >Fanpage</a>
                                 </div>
                             </div>
                         </button>
@@ -115,8 +115,8 @@ function Header() {
                             <Popper placement="bottom" referenceElement={popperRef.current}>
                                 {({ ref, style, placement }) => (
                                     <div ref={ref} style={style} data-placement={placement} className={classNames(styles.userMenu)} onClick={handleOutsideClick}>
-                                        <button onClick={handlePushToAccount}>View Profile</button>
-                                        <button onClick={handleLogout}>Logout</button>
+                                        <button onClick={handlePushToAccount}>Tài khoản</button>
+                                        <button onClick={handleLogout}>Đăng xuất</button>
                                     </div>
                                 )}
                             </Popper>

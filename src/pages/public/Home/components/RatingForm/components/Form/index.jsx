@@ -1,4 +1,4 @@
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
@@ -19,6 +19,7 @@ function Form() {
             .required('Số điện thoại là bắt buộc')
             .matches(/^(0|\+84)[1-9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
         title: yup.string().required('Tiêu đề là bắt buộc'),
+        isGood: yup.boolean(),
     });
 
     const methods = useForm({
@@ -29,12 +30,8 @@ function Form() {
 
     const onSubmit = async (data) => {
         data.rating = textArea.current.value;
-        console.log(data);
-
         try {
             const response = await axios.post('http://localhost:3001/api/review/send-review', data);
-            console.log(response.data);
-
             toast.success(
                 'Đã gửi đánh giá. Chúng tôi sẽ tiếp nhận và phát triển thêm dựa trên đánh giá của bạn'
             );
@@ -81,6 +78,20 @@ function Form() {
                             name='title'
                             className={classNames(styles.FormInput)}
                             placeholder='Tiêu đề'
+                        />
+                    </div>
+                    <div className={classNames('flex', 'items-center', 'gap-[24px]', 'pl-[24px]')}>
+                    <label className='whitespace-nowrap'>Đánh giá :</label>
+                        <Controller
+                            control={methods.control}
+                            name="isGood"
+                            defaultValue={false} // Giá trị mặc định
+                            render={({ field }) => (
+                                <select {...field} className={classNames(styles.FormInput)}>
+                                    <option value={true}>Tích cực</option>
+                                    <option value={false}>Tiêu cực</option>
+                                </select>
+                            )}
                         />
                     </div>
                     <div className={classNames(styles.InputWrapper)}>

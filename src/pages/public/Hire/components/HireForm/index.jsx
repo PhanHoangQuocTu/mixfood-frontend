@@ -30,7 +30,6 @@ function HireForm() {
 
     const onSubmit = async (data) => {
         data.note = textArea.current.value;
-        console.log(data)
         toast.success(
             'Chúng tôi đã nhận được thông tin. Chúng tôi sẽ sớm liên hệ đến bạn sớm nhất'
         );

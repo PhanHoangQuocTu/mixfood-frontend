@@ -33,7 +33,6 @@ function AdminLoginForm() {
         else {
             toast.error('Sai tài khoản hoặc mật khẩu')
         }
-        console.log(data);
     };
 
     return (

@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import styles from './AdminReviews.module.scss'
 import AdminTitle from "@/components/AdminTitle";
+import ReviewTable from "./components/ReviewTable";
 
 function AdminReviews() {
     return (
@@ -8,6 +9,7 @@ function AdminReviews() {
             <div className={classNames('my-[40px]')}>
                 <AdminTitle title={'Đánh giá'} />
             </div>
+            <ReviewTable />
         </section>
     );
 }

@@ -68,6 +68,7 @@ function Menu() {
                 </div>
                 <div className={classNames(styles.menuSwiper)}>
                     <Swiper
+                    className='md:h-[100vh]'
                         slidesPerView={1}
                         spaceBetween={10}
                         autoplay={{delay: 4000}}

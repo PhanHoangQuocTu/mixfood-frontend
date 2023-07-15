@@ -11,9 +11,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import styles from './SignIn.module.scss';
-import { memo } from 'react';
+import { memo, useState } from 'react';
+import ForgotPasswordForm from './componenets/ForgetPasswordForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 function SignIn() {
+  const [showModal, setShowModal] = useState(false);
+
   const validationSchema = yup.object().shape({
     phone: yup
       .string()
@@ -32,7 +37,6 @@ function SignIn() {
       const user = response.data;
 
       if (user) {
-        console.log(user)
         Cookies.set('mixfooduser', JSON.stringify(user));
         toast.success('Đăng nhập thành công');
         setTimeout(() => {
@@ -46,9 +50,21 @@ function SignIn() {
     }
   };
 
+  function handleForgotPassword() {
+    setShowModal(!showModal);
+  }
   return (
     <FormProvider {...methods}>
       <div className={classNames(styles.wrapper)}>
+        {showModal && (
+          <div className='top-0 w-full h-full fixed flex items-center justify-center bg-[#fafafad0] flex-col'>
+            <ForgotPasswordForm />
+            <button onClick={handleForgotPassword} className='mt-[16px] gap-[8px] flex items-center'>
+                <FontAwesomeIcon icon={faClose}/>
+                <span>Đóng</span>
+            </button>
+          </div>
+        )}
         <form onSubmit={methods.handleSubmit(onSubmit)} method='POST' className={`${styles.formWrapper}`}>
           <span className={classNames(styles.title)}>Đăng nhập</span>
           <div className={classNames(styles.InputWrapper)}>
@@ -79,9 +95,9 @@ function SignIn() {
             <button className={`font-poppins ${styles.SignInFormSubmitBtn}`} type='submit'>
               Đăng nhập
             </button>
-            <Link to='/signin' className={`${styles.SignInFormForgotPass} font-poppins`}>
+            <button onClick={handleForgotPassword} className={`${styles.SignInFormForgotPass} font-poppins`}>
               Quên mật khẩu?
-            </Link>
+            </button>
             <div className={classNames(styles.linkWrapper)}>
               <Link to='/' className={classNames(styles.LinkHome)}>
                 Trang chủ
