@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import styles from './AdminReviews.module.scss'
 import AdminTitle from "@/components/AdminTitle";
-import ReviewTable from "./components/ReviewTable";
+import ReviewTable from "./ReviewTable";
 
 function AdminReviews() {
     return (

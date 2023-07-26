@@ -19,6 +19,7 @@ function BookForm() {
         name: yup.string().required('Họ và tên là bắt buộc'),
         date: yup.string().required('Ngày là bắt buộc'),
         time: yup.string().required('Giờ là bắt buộc'),
+        count: yup.string().required('Hãy nhập số người')
     });
 
     const methods = useForm({
@@ -116,6 +117,16 @@ function BookForm() {
                             name='time'
                             className={classNames(styles.FormInput)}
                             placeholder='Giờ'
+                        />
+                    </div>
+                    <div className={classNames(styles.InputWrapper)}>
+                        <InputForm
+                            type='number'
+                            name='count'
+                            min="1" 
+                            max="50"
+                            className={classNames(styles.FormInput)}
+                            placeholder='Số người'
                         />
                     </div>
                     <div className={classNames(styles.InputWrapper)}>

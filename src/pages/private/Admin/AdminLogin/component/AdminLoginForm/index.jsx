@@ -7,10 +7,13 @@ import styles from './AdminLoginForm.module.scss'
 import classNames from "classnames";
 import InputForm from "@/components/InputForm";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const schema = Yup.object().shape({
-    username: Yup.string().required("Vui lòng nhập tài khoản"),
+    email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
     password: Yup.string().required("Vui lòng nhập mật khẩu"),
 });
 
@@ -23,15 +26,24 @@ function AdminLoginForm() {
 
     const { handleSubmit } = methods;
 
-    const onSubmit = (data) => {
-        if (data.username === 'admin' && data.password === 'admin') {
-            toast.success("Đăng nhập thành công")
-            setTimeout(() => {
-                navigate('/admin/home')
-            }, 2000)
-        }
-        else {
-            toast.error('Sai tài khoản hoặc mật khẩu')
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.post('http://127.0.0.1:3001/api/auth/sign-in', data);
+            const user = response.data;
+
+            console.log(user);
+            if (user) {
+                if (user.rules === true) {
+                    toast.success('Đăng nhập thành công');
+                    setTimeout(() => {
+                        navigate('/admin/home')
+                    }, 4000)
+                }
+            } else {
+                toast.error('Đăng nhập thất bại');
+            }
+        } catch (error) {
+            toast.error('Đăng nhập thất bại');
         }
     };
 
@@ -42,12 +54,12 @@ function AdminLoginForm() {
                 <span className={classNames(styles.heading)}>Hello admin</span>
                 <div className={classNames(styles.form)}>
                     <div className={classNames(styles.item)}>
-                        <label className={classNames(styles.label)} htmlFor="username">Tài khoản:</label>
+                        <label className={classNames(styles.label)} htmlFor="email">Tài khoản:</label>
                         <InputForm
-                            name="username"
+                            name="email"
                             type="text"
                             className={classNames(styles.input)}
-                            placeholder="Nhập tài khoản"
+                            placeholder="Nhập email"
                         />
                     </div>
                     <div className={classNames(styles.item)}>
@@ -61,6 +73,11 @@ function AdminLoginForm() {
                     </div>
                     <button type="submit" className={classNames(styles.btnLogin)}>Đăng nhập</button>
                 </div>
+                <div className="inline-flex mt-[24px] gap-[8px] hover:opacity-60 items-center">
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                    <Link className="text-[#000] no-underline" to={'/'}>Trang chủ</Link>
+                </div>
+
             </form>
         </FormProvider>
     );

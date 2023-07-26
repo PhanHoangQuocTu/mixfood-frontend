@@ -20,10 +20,7 @@ function SignIn() {
   const [showModal, setShowModal] = useState(false);
 
   const validationSchema = yup.object().shape({
-    phone: yup
-      .string()
-      .required('Số điện thoại là bắt buộc')
-      .matches(/^(0|\+84)[1-9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
+    email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
     password: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu'),
   });
 
@@ -68,15 +65,15 @@ function SignIn() {
         <form onSubmit={methods.handleSubmit(onSubmit)} method='POST' className={`${styles.formWrapper}`}>
           <span className={classNames(styles.title)}>Đăng nhập</span>
           <div className={classNames(styles.InputWrapper)}>
-            <label className={classNames(styles.labelInput)} htmlFor='phone'>
-              Số điện thoại
+            <label className={classNames(styles.labelInput)} htmlFor='email'>
+              Email
             </label>
             <InputForm
               type='text'
-              id='phone'
-              name='phone'
+              id='email'
+              name='email'
               className={`${styles.signInFormInput}`}
-              placeholder='Phone Number'
+              placeholder='Email'
             />
           </div>
           <div className={classNames(styles.InputWrapper)}>

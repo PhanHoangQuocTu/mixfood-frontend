@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import styles from './AdminAccount.module.scss'
 import AdminTitle from "@/components/AdminTitle";
-import AccoutTable from "./components/AccountTable";
+import AccoutTable from "./AccountTable";
 
 function AdminAccount() {
     return (
