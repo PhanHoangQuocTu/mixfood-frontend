@@ -20,6 +20,7 @@ function Form() {
             .matches(/^(0|\+84)[1-9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
         title: yup.string().required('Tiêu đề là bắt buộc'),
         isGood: yup.boolean(),
+        product: yup.string()
     });
 
     const methods = useForm({
@@ -32,9 +33,11 @@ function Form() {
         data.rating = textArea.current.value;
         try {
             const response = await axios.post('http://localhost:3001/api/review/send-review', data);
-            toast.success(
-                'Đã gửi đánh giá. Chúng tôi sẽ tiếp nhận và phát triển thêm dựa trên đánh giá của bạn'
-            );
+            if (response) {
+                toast.success(
+                    'Đã gửi đánh giá. Chúng tôi sẽ tiếp nhận và phát triển thêm dựa trên đánh giá của bạn'
+                );
+            }
         } catch (error) {
             console.error('Error sending review', error);
             toast.error('Gửi đánh giá thất bại. Vui lòng thử lại sau');
@@ -81,15 +84,30 @@ function Form() {
                         />
                     </div>
                     <div className={classNames('flex', 'items-center', 'gap-[24px]', 'pl-[24px]')}>
-                    <label className='whitespace-nowrap'>Đánh giá :</label>
+                        <label className='whitespace-nowrap' htmlFor='isGood'>Đánh giá :</label>
                         <Controller
                             control={methods.control}
                             name="isGood"
-                            defaultValue={false} // Giá trị mặc định
+                            defaultValue={false}
                             render={({ field }) => (
                                 <select {...field} className={classNames(styles.FormInput)}>
                                     <option value={true}>Tích cực</option>
                                     <option value={false}>Tiêu cực</option>
+                                </select>
+                            )}
+                        />
+                    </div>
+                    <div className={classNames('flex', 'items-center', 'gap-[24px]', 'pl-[24px]')}>
+                        <label className='whitespace-nowrap' htmlFor='product'>Vấn đề :</label>
+                        <Controller
+                            control={methods.control}
+                            name="product"
+                            defaultValue={'food'}
+                            render={({ field }) => (
+                                <select {...field} className={classNames(styles.FormInput)}>
+                                    <option value={'food'}>Món ăn</option>
+                                    <option value={'service'}>Phục vụ</option>
+                                    <option value={'both'}>Cả 2</option>
                                 </select>
                             )}
                         />

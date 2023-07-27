@@ -8,9 +8,11 @@ function Sidebar() {
   const location = useLocation();
   const { pathname } = location;
   const [countBooking, setCountBooking] = useState();
+  const [countHire, setCountHire] = useState();
 
   useEffect(() => {
     fetchUncheckedBookingCount();
+    fetchUnconfirmedHireCount();
   }, []);
 
   const fetchUncheckedBookingCount = async () => {
@@ -21,6 +23,17 @@ function Sidebar() {
       }
     } catch (error) {
       console.error('Error fetching unchecked booking count', error);
+    }
+  };
+
+  const fetchUnconfirmedHireCount = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/api/hire/get-hires-unconfirm');
+      if (response && response.data && response.data.totalCount) {
+        setCountHire(response.data.totalCount);
+      }
+    } catch (error) {
+      console.error('Error fetching unconfirmed hire count', error);
     }
   };
 
@@ -54,9 +67,10 @@ function Sidebar() {
         </Link>
         <Link
           to={'/admin/recruitment'}
-          className={classNames(styles.item, { [styles.active]: pathname === '/admin/recruitment' })}
+          className={classNames(styles.item, 'flex', 'justify-between', { [styles.active]: pathname === '/admin/recruitment' })}
         >
           Tuyển dụng
+          {countHire && <span className='rounded-[50%] bg-red-500 w-[28px] h-[28px] flex items-center justify-center text-[#fff] text-[20px]'>{countHire}</span>}
         </Link>
         <Link
           to={'/admin/reviews'}

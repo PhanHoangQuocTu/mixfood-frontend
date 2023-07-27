@@ -66,6 +66,7 @@ function ReviewTable() {
               <th className="whitespace-nowrap" scope="col">Họ và tên</th>
               <th className="whitespace-nowrap" scope="col">Số điện thoại</th>
               <th className="whitespace-nowrap" scope="col">Đánh giá</th>
+              <th className="whitespace-nowrap" scope="col">Vấn đề</th>
               <th className="whitespace-nowrap" scope="col">Tiêu đề</th>
               <th className="whitespace-nowrap" scope="col">Nội dung</th>
               <th className="whitespace-nowrap" scope="col">Ngày đánh giá</th>
@@ -79,6 +80,7 @@ function ReviewTable() {
                 <td>{review.name}</td>
                 <td>{review.phone}</td>
                 <td>{review.isGood ? <span className="text-success">Tích cực</span> : <span className="text-danger">Tiêu cực</span>}</td>
+                <td>{review.product && review.product === 'food' ? "Món ăn" : review.product === 'service' ? 'Phục vụ' : 'Phục vụ, Món ăn'} </td>
                 <td>{review.title}</td>
                 <td className="max-w-[250px] min-w-[250px] break-all">{review.rating}</td>
                 <td>{format(new Date(review.createdAt), 'dd/MM/yyyy HH:mm:ss')}</td>
