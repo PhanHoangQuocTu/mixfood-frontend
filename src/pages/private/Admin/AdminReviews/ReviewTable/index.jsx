@@ -16,7 +16,7 @@ function ReviewTable() {
   const fetchData = async (page, date) => {
     try {
       const limit = 10; // Số lượng kết quả trên mỗi trang
-      let url = `http://localhost:3001/api/admin/getReviews?page=${page}&limit=${limit}`;
+      let url = `https://mixfood-be-production.up.railway.app//api/admin/getReviews?page=${page}&limit=${limit}`;
 
       // If a search date is provided, add it to the API call
       if (date) {
@@ -33,7 +33,7 @@ function ReviewTable() {
 
   const handleCheckboxChange = async (reviewId) => {
     try {
-      const response = await axios.put(`http://localhost:3001/api/admin/updateReview`, { _id: reviewId });
+      const response = await axios.put(`https://mixfood-be-production.up.railway.app//api/admin/updateReview`, { _id: reviewId });
       toast.success(response.data.message);
     } catch (error) {
       console.error('Error updating review status', error);

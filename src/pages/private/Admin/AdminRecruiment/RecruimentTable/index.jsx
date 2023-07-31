@@ -18,7 +18,7 @@ function RecruimentTable() {
     const fetchData = async (page, query) => {
         try {
             const limit = 10; // Số lượng kết quả trên mỗi trang
-            let url = `http://localhost:3001/api/hire/get-hires?page=${page}&limit=${limit}`;
+            let url = `https://mixfood-be-production.up.railway.app//api/hire/get-hires?page=${page}&limit=${limit}`;
 
             if (query) {
                 url += `&query=${query}`;
@@ -38,7 +38,7 @@ function RecruimentTable() {
 
     const handleConfirmHire = async (id) => {
         try {
-            const url = `http://localhost:3001/api/hire/confirm/${id}`;
+            const url = `https://mixfood-be-production.up.railway.app//api/hire/confirm/${id}`;
             const response = await axios.post(url);
             if (response) {
                 toast.success('Xác nhận thành công');
@@ -56,7 +56,7 @@ function RecruimentTable() {
 
     const handleDeleteHire = async (id) => {
         try {
-            const url = `http://localhost:3001/api/hire/delete/${id}`;
+            const url = `https://mixfood-be-production.up.railway.app//api/hire/delete/${id}`;
             await axios.delete(url);
             setHires((prevHires) => prevHires.filter((hire) => hire._id !== id));
             toast.success('Xóa thành công');

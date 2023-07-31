@@ -15,7 +15,7 @@ function BookingTable() {
   const fetchData = async (page) => {
     try {
       const limit = 10; // Number of results per page
-      let url = `http://localhost:3001/api/admin/getBookingUnchecked?page=${page}&limit=${limit}`;
+      let url = `https://mixfood-be-production.up.railway.app//api/admin/getBookingUnchecked?page=${page}&limit=${limit}`;
 
       const response = await axios.get(url);
       setBookings(response.data.uncheckedBookings);
@@ -27,7 +27,7 @@ function BookingTable() {
 
   const handleConfirmBooking = async (bookingId) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/admin/updateBookingStatus', {
+      const response = await axios.post('https://mixfood-be-production.up.railway.app//api/admin/updateBookingStatus', {
         _id: bookingId,
       });
 

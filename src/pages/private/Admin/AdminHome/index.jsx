@@ -16,7 +16,7 @@ function AdminHome() {
 
   const fetchUncheckedBookingCount = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/admin/getUncheckedBookingCount');
+      const response = await axios.get('https://mixfood-be-production.up.railway.app//api/admin/getUncheckedBookingCount');
       if (response && response.data && response.data.count) {
         setCountBooking(response.data.count);
       }
@@ -27,7 +27,7 @@ function AdminHome() {
 
   const fetchUnconfirmedHireCount = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/hire/get-hires-unconfirm');
+      const response = await axios.get('https://mixfood-be-production.up.railway.app//api/hire/get-hires-unconfirm');
       if (response && response.data && response.data.totalCount) {
         setCountHire(response.data.totalCount);
       }
