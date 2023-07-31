@@ -30,8 +30,6 @@ function AdminLoginForm() {
         try {
             const response = await axios.post('http://127.0.0.1:3001/api/auth/sign-in', data);
             const user = response.data;
-
-            console.log(user);
             if (user) {
                 if (user.rules === true) {
                     toast.success('Đăng nhập thành công');

@@ -58,17 +58,11 @@ function HireForm() {
         data.note = textArea.current.value;
 
         try {
-            // Call the API and post the form data using axios
             const response = await axios.post('http://127.0.0.1:3001/api/hire/hire-form', data);
-
-            // Show success toast
-            toast.success('Chúng tôi đã nhận được thông tin. Chúng tôi sẽ sớm liên hệ đến bạn sớm nhất');
-
-            // Optional: Reset the form after successful submission
+            if (response) {
+                toast.success('Chúng tôi đã nhận được thông tin. Chúng tôi sẽ sớm liên hệ đến bạn sớm nhất');
+            }
             methods.reset();
-
-            // You can also handle the response data from the server if needed
-            console.log('API response:', response.data);
         } catch (error) {
             // Show error toast if the API call fails
             toast.error('Đã xảy ra lỗi. Vui lòng thử lại sau.');

@@ -15,7 +15,6 @@ function AccountTable() {
       const response = await axios.get(`http://localhost:3001/api/admin/getAccounts?page=${page}&limit=${limit}&query=${query}`);
       setAccounts(response.data.accounts);
       setTotalPages(response.data.totalPages);
-      console.log(response);
     } catch (error) {
       console.error('Error fetching accounts', error);
     }

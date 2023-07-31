@@ -34,7 +34,7 @@ function BookingTable() {
       if (response && response.status === 200) {
         toast.success('Xác nhận thành công');
         setTimeout(() => {
-            window.location.reload();
+          window.location.reload();
         }, 1500)
       }
     } catch (error) {
