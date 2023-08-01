@@ -69,7 +69,7 @@ function RecruimentTable() {
 
     return (
         <div>
-            <div className="search-container flex gap-[12px]">
+            <div className="search-container flex gap-[12px] md:flex-row xs:flex-col">
                 <input
                     className="flex-1 px-[24px] py-[8px] bg-[#fafafa]"
                     type="text"
@@ -77,7 +77,7 @@ function RecruimentTable() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Tìm kiếm theo tên, số điện thoại hoặc email"
                 />
-                <button className='bg-[#0b2228] text-[#fff] hover:bg-[#142f36] px-[24px] rounded-[4px]' onClick={handleSearch}>Tìm kiếm</button>
+                <button className='bg-[#0b2228] text-[#fff] hover:bg-[#142f36] px-[24px] rounded-[4px] py-[8px] whitespace-nowrap' onClick={handleSearch}>Tìm kiếm</button>
             </div>
             <div className="overflow-x-auto">
                 <ToastContainer />
@@ -101,9 +101,9 @@ function RecruimentTable() {
                         {hires?.map((hire, index) => (
                             <tr key={index}>
                                 <th scope="row">{index + 1}</th>
-                                <td>{hire.name}</td>
+                                <td className="whitespace-nowrap">{hire.name}</td>
                                 <td>{hire.phone}</td>
-                                <td>{hire.email}</td>
+                                <td className="whitespace-nowrap">{hire.email}</td>
                                 <td>{hire.dateOfBirth}</td>
                                 <td>{hire.hometown}</td>
                                 <td>{hire.experience === 'yes' ? 'Có' : 'Chưa có'}</td>

@@ -31,7 +31,7 @@ function AccountTable() {
 
   return (
     <div>
-      <div className="flex gap-[12px]">
+      <div className="flex gap-[12px] md:flex-row xs:flex-col">
         <input
           className='flex-1 px-[24px] py-[8px] bg-[#fafafa]'
           type="text"
@@ -39,7 +39,7 @@ function AccountTable() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button className='bg-[#0b2228] text-[#fff] hover:bg-[#142f36] px-[24px] rounded-[4px]' onClick={handleSearch}>Tìm kiếm</button>
+        <button className='bg-[#0b2228] text-[#fff] hover:bg-[#142f36] px-[24px] py-[8px] rounded-[4px] whitespace-nowrap' onClick={handleSearch}>Tìm kiếm</button>
       </div>
       <div className="overflow-x-auto">
         <table className="table table-striped table-hover">
@@ -56,9 +56,9 @@ function AccountTable() {
             {accounts.map((account, index) => (
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
-                <td>{account.name}</td>
+                <td className="whitespace-nowrap">{account.name}</td>
                 <td>{account.phone}</td>
-                <td>{account.email}</td>
+                <td className="whitespace-nowrap">{account.email}</td>
                 <td>{account.isVerified ? <FontAwesomeIcon icon={faCheck} className='text-success' /> : <FontAwesomeIcon icon={faClose} className='text-danger' />}</td>
               </tr>
             ))}

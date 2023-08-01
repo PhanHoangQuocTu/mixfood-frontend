@@ -35,7 +35,7 @@ function ApprovedTable() {
 
   return (
     <div>
-      <div className="flex gap-[12px]">
+      <div className="flex gap-[12px] md:flex-row xs:flex-col">
         <input
           className="flex-1 px-[24px] py-[8px] bg-[#fafafa]"
           type="date"
@@ -44,7 +44,7 @@ function ApprovedTable() {
           onChange={(e) => setSearchDate(e.target.value)}
         />
         <button
-          className="bg-[#0b2228] text-[#fff] hover:bg-[#142f36] px-[24px] rounded-[4px]"
+          className="bg-[#0b2228] text-[#fff] hover:bg-[#142f36] px-[24px] py-[8px] rounded-[4px] whitespace-nowrap"
           onClick={handleSearch}
         >
           Tìm kiếm

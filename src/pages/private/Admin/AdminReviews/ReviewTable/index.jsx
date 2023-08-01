@@ -47,7 +47,7 @@ function ReviewTable() {
 
   return (
     <div>
-      <div className="flex gap-[12px]">
+      <div className="flex gap-[12px] md:flex-row xs:flex-col">
         <input
           className="flex-1 px-[24px] py-[8px] bg-[#fafafa]"
           type="date"
@@ -55,7 +55,7 @@ function ReviewTable() {
           value={searchDate}
           onChange={(e) => setSearchDate(e.target.value)}
         />
-        <button className='bg-[#0b2228] text-[#fff] hover:bg-[#142f36] px-[24px] rounded-[4px]' onClick={handleSearch}>Tìm kiếm</button>
+        <button className='bg-[#0b2228] text-[#fff] hover:bg-[#142f36] px-[24px] rounded-[4px] whitespace-nowrap py-[8px]' onClick={handleSearch}>Tìm kiếm</button>
       </div>
       <div className="overflow-x-auto">
         <ToastContainer />
@@ -77,11 +77,11 @@ function ReviewTable() {
             {reviews?.map((review, index) => (
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
-                <td>{review.name}</td>
+                <td className="whitespace-nowrap">{review.name}</td>
                 <td>{review.phone}</td>
                 <td>{review.isGood ? <span className="text-success">Tích cực</span> : <span className="text-danger">Tiêu cực</span>}</td>
-                <td>{review.product && review.product === 'food' ? "Món ăn" : review.product === 'service' ? 'Phục vụ' : 'Phục vụ, Món ăn'} </td>
-                <td>{review.title}</td>
+                <td className="whitespace-nowrap">{review.product && review.product === 'food' ? "Món ăn" : review.product === 'service' ? 'Phục vụ' : 'Phục vụ, Món ăn'} </td>
+                <td className="whitespace-nowrap">{review.title}</td>
                 <td className="max-w-[250px] min-w-[250px] break-all">{review.rating}</td>
                 <td>{format(new Date(review.createdAt), 'dd/MM/yyyy HH:mm:ss')}</td>
                 <td>
