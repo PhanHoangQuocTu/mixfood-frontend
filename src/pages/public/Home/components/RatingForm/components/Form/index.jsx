@@ -32,7 +32,7 @@ function Form() {
     const onSubmit = async (data) => {
         data.rating = textArea.current.value;
         try {
-            const response = await axios.post('https://mixfood-be-production.up.railway.app//api/review/send-review', data);
+            const response = await axios.post('https://mixfood-be-production.up.railway.app/api/review/send-review', data);
             if (response) {
                 toast.success(
                     'Đã gửi đánh giá. Chúng tôi sẽ tiếp nhận và phát triển thêm dựa trên đánh giá của bạn'

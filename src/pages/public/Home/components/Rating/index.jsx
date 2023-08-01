@@ -50,7 +50,7 @@ function Rating() {
 
     const fetchReviewsToShow = async () => {
         try {
-            const response = await axios.get('https://mixfood-be-production.up.railway.app//api/review/reviewsToShow');
+            const response = await axios.get('https://mixfood-be-production.up.railway.app/api/review/reviewsToShow');
             setReviews(response.data);
         } catch (error) {
             console.error('Error fetching reviews', error);

@@ -12,7 +12,7 @@ function AccountTable() {
   const fetchData = async (page, query) => {
     try {
       const limit = 10; // Số lượng kết quả trên mỗi trang
-      const response = await axios.get(`https://mixfood-be-production.up.railway.app//api/admin/getAccounts?page=${page}&limit=${limit}&query=${query}`);
+      const response = await axios.get(`https://mixfood-be-production.up.railway.app/api/admin/getAccounts?page=${page}&limit=${limit}&query=${query}`);
       setAccounts(response.data.accounts);
       setTotalPages(response.data.totalPages);
     } catch (error) {

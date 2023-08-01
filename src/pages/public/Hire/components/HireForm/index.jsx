@@ -58,7 +58,7 @@ function HireForm() {
         data.note = textArea.current.value;
 
         try {
-            const response = await axios.post('http://127.0.0.1:3001/api/hire/hire-form', data);
+            const response = await axios.post('https://mixfood-be-production.up.railway.app/api/hire/hire-form', data);
             if (response) {
                 toast.success('Chúng tôi đã nhận được thông tin. Chúng tôi sẽ sớm liên hệ đến bạn sớm nhất');
             }

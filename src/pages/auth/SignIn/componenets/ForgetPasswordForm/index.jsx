@@ -18,7 +18,7 @@ function ForgotPasswordForm() {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post('https://mixfood-be-production.up.railway.app//api/auth/forgetPassword', data);
+            const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/forgetPassword', data);
             if (response) {
                 toast.success(response.data.message)
             }

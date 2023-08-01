@@ -44,7 +44,7 @@ function BookForm() {
                 email: user?.email,
             }
             try {
-                const response = await axios.post('http://127.0.0.1:3001/api/booking/book', formData);
+                const response = await axios.post('https://mixfood-be-production.up.railway.app/api/booking/book', formData);
                 if (response) {
                     toast.success(
                         'Đặt bàn thành công. Chúng tôi sẽ gọi xác nhận trong vài phút nữa. Cảm ơn Bạn đã ủng hộ'
@@ -123,7 +123,7 @@ function BookForm() {
                         <InputForm
                             type='number'
                             name='count'
-                            min="1" 
+                            min="1"
                             max="50"
                             className={classNames(styles.FormInput)}
                             placeholder='Số người'

@@ -15,7 +15,7 @@ function ApprovedTable() {
   const fetchData = async (page, date) => {
     try {
       const limit = 10;
-      let url = `https://mixfood-be-production.up.railway.app//api/admin/getBookings?page=${page}&limit=${limit}`;
+      let url = `https://mixfood-be-production.up.railway.app/api/admin/getBookings?page=${page}&limit=${limit}`;
 
       if (date) {
         url += `&date=${date}`;

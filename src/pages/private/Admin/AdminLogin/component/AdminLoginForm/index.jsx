@@ -28,7 +28,7 @@ function AdminLoginForm() {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post('http://127.0.0.1:3001/api/auth/sign-in', data);
+            const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-in', data);
             const user = response.data;
             if (user) {
                 if (user.rules === true) {

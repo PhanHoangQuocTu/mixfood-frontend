@@ -40,7 +40,7 @@ function AccountPassword() {
             email: user?.email
         }
         try {
-            const response = await axios.put('http://127.0.0.1:3001/api/auth/changePassword', formData);
+            const response = await axios.put('https://mixfood-be-production.up.railway.app/api/auth/changePassword', formData);
 
             const { message } = response.data;
             toast.success(message);

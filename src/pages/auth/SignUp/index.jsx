@@ -33,7 +33,7 @@ function SignUp() {
   const onSubmit = async (data) => {
     try {
       // Gửi dữ liệu đăng ký đi
-      const response = await axios.post('http://127.0.0.1:3001/api/auth/sign-up', data);
+      const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-up', data);
       if (response) {
         toast.success('Đăng ký tài khoản thành công.')
         toast.success('Chúng tôi đã gửi mã xác thực vào gmail. Hãy xác thực để tiếp tục sử dụng dịch vụ.')

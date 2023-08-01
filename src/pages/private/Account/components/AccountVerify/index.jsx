@@ -25,7 +25,7 @@ function AccountVerify() {
             email: user?.email
         }
         try {
-            const response = await axios.post('http://127.0.0.1:3001/api/auth/verify', formData);
+            const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/verify', formData);
             const { message } = response.data;
             // Thay đổi thuộc tính isVerified trong Cookie thành true
             const userLogin = Cookies.get('mixfooduser') ? JSON.parse(Cookies.get('mixfooduser')) : null;

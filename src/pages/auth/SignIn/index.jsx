@@ -30,7 +30,7 @@ function SignIn() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('http://127.0.0.1:3001/api/auth/sign-in', data);
+      const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-in', data);
       const user = response.data;
 
       if (user) {
@@ -57,8 +57,8 @@ function SignIn() {
           <div className='top-0 w-full h-full fixed flex items-center justify-center bg-[#fafafad0] flex-col'>
             <ForgotPasswordForm />
             <button onClick={handleForgotPassword} className='mt-[16px] gap-[8px] flex items-center'>
-                <FontAwesomeIcon icon={faClose}/>
-                <span>Đóng</span>
+              <FontAwesomeIcon icon={faClose} />
+              <span>Đóng</span>
             </button>
           </div>
         )}

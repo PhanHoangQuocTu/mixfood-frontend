@@ -33,23 +33,23 @@ function AccountForm() {
                 ...data,
                 email: user?.email,
             }
-            const response = await axios.put('http://127.0.0.1:3001/api/auth/updateAccount', formData);
-        
+            const response = await axios.put('https://mixfood-be-production.up.railway.app/api/auth/updateAccount', formData);
+
             const { message } = response.data;
             const updatedUser = {
-              ...user,
-              name: data.name,
-              phone: data.phone,
+                ...user,
+                name: data.name,
+                phone: data.phone,
             };
-        
+
             setUser(updatedUser);
             Cookies.set('mixfooduser', JSON.stringify(updatedUser));
-        
+
             toast.success(message);
-          } catch (error) {
+        } catch (error) {
             const { error: errorMessage } = error.response.data;
             toast.error(errorMessage);
-          }
+        }
     };
     return (
         <FormProvider {...methods}>
