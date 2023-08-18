@@ -8,13 +8,12 @@ import axios from 'axios';
 import InputForm from '@/components/InputForm';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
-import styles from './SignIn.module.scss';
 import { memo, useState } from 'react';
 import ForgotPasswordForm from './componenets/ForgetPasswordForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+
+import styles from './SignIn.module.scss';
 
 function SignIn() {
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +29,12 @@ function SignIn() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-in', data);
+      const transformedData = {
+        ...data,
+        email: data.email.toLowerCase(),
+      };
+
+      const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-in', transformedData);
       const user = response.data;
 
       if (user) {
@@ -38,7 +42,7 @@ function SignIn() {
         toast.success('Đăng nhập thành công');
         setTimeout(() => {
           window.location.href = '/';
-        }, 4000)
+        }, 4000);
       } else {
         toast.error('Đăng nhập thất bại');
       }
@@ -47,9 +51,10 @@ function SignIn() {
     }
   };
 
-  function handleForgotPassword() {
+  const handleForgotPassword = () => {
     setShowModal(!showModal);
-  }
+  };
+
   return (
     <FormProvider {...methods}>
       <div className={classNames(styles.wrapper)}>
@@ -62,8 +67,8 @@ function SignIn() {
             </button>
           </div>
         )}
-        <form onSubmit={methods.handleSubmit(onSubmit)} method='POST' className={`${styles.formWrapper}`}>
-          <span className={classNames(styles.title)}>Đăng nhập</span>
+        <form onSubmit={methods.handleSubmit(onSubmit)} method='POST' className={styles.formWrapper}>
+          <span className={styles.title}>Đăng nhập</span>
           <div className={classNames(styles.InputWrapper)}>
             <label className={classNames(styles.labelInput)} htmlFor='email'>
               Email
@@ -88,7 +93,7 @@ function SignIn() {
               placeholder='Password'
             />
           </div>
-          <div className={`${styles.SignInFormBtnWrapper}`}>
+          <div className={styles.SignInFormBtnWrapper}>
             <button className={`font-poppins ${styles.SignInFormSubmitBtn}`} type='submit'>
               Đăng nhập
             </button>
@@ -105,11 +110,10 @@ function SignIn() {
             </div>
           </div>
           <ToastContainer />
-
         </form>
       </div>
     </FormProvider>
   );
 }
 
-export default memo(SignIn)
+export default memo(SignIn);

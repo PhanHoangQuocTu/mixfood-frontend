@@ -17,7 +17,7 @@ function Header() {
     const [isExpanded, setIsExpanded] = useState(false);
     const [user, setUser] = useState(null);
     const [showMenu, setShowMenu] = useState(false);
-    const [dropdownActive, setDropdownActive] = useState(false)
+    const [dropdownActive, setDropdownActive] = useState(false);
     const popperRef = useRef(null);
 
     useEffect(() => {
@@ -36,6 +36,8 @@ function Header() {
 
     const toggleExpanded = () => {
         setIsExpanded(!isExpanded);
+        setDropdownActive(false);
+        setShowMenu(false);
     };
 
     const toggleMenu = () => {
@@ -81,10 +83,10 @@ function Header() {
                     <div className={classNames(styles.listNavbar, { [styles.dropdown]: isExpanded === true })}>
                         <Link className={classNames(styles.navbarLink, styles.textNoWrap)} to="/">Trang chủ</Link>
                         <Link className={classNames(styles.navbarLink, styles.textNoWrap)} to="/book">Đặt bàn</Link>
-                        <button onClick={() => setDropdownActive(!dropdownActive)} className={classNames(styles.dropdownLink, styles.dropdownNavbar, 'xl:max-w-[120px]')}>
+                        <button onClick={() => setDropdownActive(!dropdownActive)} className={classNames(styles.dropdownLink, 'xl:max-w-[120px]')}>
                             <span className={classNames('flex', 'items-center', 'gap-[8px]')}>
-                            <span className={classNames(styles.textNoWrap)}>Đặt món</span>
-                            <FontAwesomeIcon icon={faAngleDown}/>
+                                <span className={classNames(styles.textNoWrap)}>Đặt món</span>
+                                <FontAwesomeIcon icon={faAngleDown} />
                             </span>
                             <div className={classNames(styles.menuNavbar, 'pl-[16px]', { [styles.showDropdown]: dropdownActive === true })}>
                                 <div className={classNames('flex', 'items-center', 'gap-[12px]')}>
@@ -107,7 +109,7 @@ function Header() {
                     </div>
                     <div className={classNames(styles.popperShow, { [styles.ppShowed]: showMenu === true })}>
                         {user && (
-                            <button className={classNames(styles.userIcon)} onClick={toggleMenu}>
+                            <button className={classNames(styles.userIcon, { [styles.showUserIcon]: isExpanded === true })} onClick={toggleMenu}>
                                 <FontAwesomeIcon icon={faUser} className={classNames(styles.userIconMain)} />
                             </button>
                         )}

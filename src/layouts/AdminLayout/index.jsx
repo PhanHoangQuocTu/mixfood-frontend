@@ -28,14 +28,12 @@ function AdminLayout({ children }) {
 
   return (
     <div className="flex">
-      {sidebarVisible && (
-        <div ref={layoutRef} className={classNames(styles.sidebar)}>
-          <button className={classNames(styles.closeButton)} onClick={toggleSidebar}>
-            <FaTimes className={classNames('text-[#fff]', 'text-[24px]')} />
-          </button>
-          <Sidebar />
-        </div>
-      )}
+      <div ref={layoutRef} className={classNames(styles.sidebar, { [styles.open]: sidebarVisible })}>
+        <button className={classNames(styles.closeButton)} onClick={toggleSidebar}>
+          <FaTimes className={classNames('text-[#fff]', 'text-[24px]')} />
+        </button>
+        <Sidebar />
+      </div>
       <div className="w-full px-0 flex flex-col">
         <div className={classNames(styles.heading)}>
           <button className={styles.toggleButton} onClick={toggleSidebar}>

@@ -1,16 +1,13 @@
 .wrapper {
-    width: 100%;
-    min-height: 100vh;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
 .formWrapper {
     padding: 48px 32px;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-radius: 4px 0 0 4px;
     background-color: #fff;
     box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -20,9 +17,9 @@
 
 .title {
     font-size: 32px;
-    line-height: 32px;
     font-weight: 500;
     color: var(--primary-color);
+    line-height: 32px;
 }
 
 .InputWrapper {
@@ -33,9 +30,9 @@
 
 .labelInput {
     font-size: 18px;
-    line-height: 24px;
     font-weight: 400;
     color: var(--primary-color);
+    line-height: 24px;
 }
 
 .signUpFormInput {
@@ -47,19 +44,22 @@
     border-radius: 20px;
     font-size: 20px;
 }
+
 .SignUpFormBtnWrapper {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
+
 .SignUpFormSubmitBtn {
     width: 100%;
-    color: #fff;
     font-size: 24px;
-    line-height: 24px;
+    font-weight: 400;
     padding: 8px 20px;
+    color: #fff;
     background-image: linear-gradient(to right, var(--primary-color), #e76262) !important;
     border-radius: 20px;
+    cursor: pointer;
 
     &:hover {
         opacity: 0.8;
@@ -72,22 +72,15 @@
     justify-content: space-between;
 }
 
-.LinkHome {
-    font-weight: 400;
-    text-decoration: none;
-    color: #000;
-    font-size: 16px;
-    &:hover {
-        color: #ccc;
-    }
-}
-
+.LinkHome,
 .LinkSignUp {
     font-weight: 400;
     text-decoration: none;
     color: #000;
     font-size: 16px;
+    cursor: pointer;
+
     &:hover {
-        color: #ccc;
+        color: var(--primary-color-hover);
     }
 }

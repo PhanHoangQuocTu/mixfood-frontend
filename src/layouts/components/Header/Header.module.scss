@@ -6,7 +6,7 @@
     background-color: var(--primary-color);
 }
 
-.textNoWrap{
+.textNoWrap {
     max-width: 120px;
     white-space: nowrap;
 }
@@ -18,7 +18,7 @@
     align-items: center;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    transition: all 0.3s ease; /* Thêm transition cho hiệu ứng mượt hơn */
+    transition: all linear 0.15s;
 }
 
 .hideBars {
@@ -33,6 +33,7 @@
     font-size: 32px;
     font-weight: 700;
     text-decoration: none;
+
     &:hover {
         color: var(--text-color);
     }
@@ -45,12 +46,13 @@
 .navbar {
     display: flex;
     align-items: center;
-    gap: 24px;
     flex: 1;
+
     .listNavbar {
         display: flex;
         align-items: center;
     }
+
     .navbarLink {
         min-width: 145px;
         text-decoration: none;
@@ -59,10 +61,10 @@
         font-weight: 500;
         line-height: 24px;
         padding: 18px 16px;
-        opacity: 1; /* Đặt opacity mặc định là 1 */
+        opacity: 1;
 
         &:hover {
-            color: #ccc;
+            color: var(--primary-color-hover);
         }
     }
 }
@@ -105,6 +107,7 @@
     top: 50px !important;
     background-color: var(--primary-color);
     z-index: 3;
+
     button {
         min-width: 200px;
         width: 100%;
@@ -121,6 +124,7 @@
 }
 
 .dropdownLink {
+    position: relative !important;
     text-align: start;
     min-width: 145px;
     text-decoration: none;
@@ -132,39 +136,65 @@
     opacity: 1;
 
     &:hover {
-        color: #ccc;
+        color: var(--primary-color-hover);
     }
 }
 
-.dropdownNavbar {
-    position: relative;
-}
-
 .menuNavbar {
-    display: none;
+    opacity: 0;
     background-color: var(--primary-color);
     position: absolute;
+    display: flex;
     flex-direction: column;
     left: 0;
     top: 62px;
     z-index: 1;
+    transition: all linear 0.15s, max-height 0.15s;
+    /* Thêm max-height vào transition */
+    max-height: 0;
+    /* Đặt max-height mặc định là 0 */
+    overflow: hidden;
+    /* Ẩn phần bị tràn ra ngoài */
+
+    &.showDropdown {
+        opacity: 1;
+        max-height: 200px;
+        /* Đặt max-height khi menu hiển thị */
+        padding-top: 8px;
+        /* Thêm padding để tạo khoảng cách trên cùng */
+    }
 }
 
+
 .showDropdown {
-    display: flex !important;
+    opacity: 1;
 }
 
 /* Responsive styles */
 @media (max-width: 1200px) {
     .navbar {
-        display: none;
-        width: 100%;
+        padding: 20px 0;
+        opacity: 0;
+        width: 0%;
+        height: 0;
+        display: flex;
         flex-direction: column;
         align-items: flex-start;
+        transition: opacity linear 0.15s;
+
         .navbarLink {
             text-align: start;
             min-width: 120px;
         }
+    }
+
+    .listNavbar {
+        width: 100%;
+        align-items: flex-start !important;
+    }
+
+    .navbarLink {
+        width: 100%;
     }
 
     .hamburger {
@@ -173,16 +203,17 @@
 
     .expanded {
         display: flex !important;
+        opacity: 1;
         flex-direction: column;
-        gap: 8px;
     }
 
     .show {
-        display: flex;
-        padding: 20px 0;
+        width: 100%;
+        opacity: 1;
+
         ul {
-            opacity: 1; /* Hiển thị danh sách menu khi mở rộng */
-            max-height: 200px; /* Đặt chiều cao tối đa cho danh sách menu */
+            opacity: 1;
+            // max-height: 200px;
         }
     }
 
@@ -191,7 +222,7 @@
         flex-direction: column;
     }
 
-    .dropdownLink{
+    .dropdownLink {
         max-width: 120px;
         min-width: 120px;
         text-align: start;
@@ -208,9 +239,10 @@
         margin-left: 12px;
     }
 
-    .popperShow{
+    .popperShow {
         align-self: flex-end;
     }
+
     .userMenu {
         z-index: 3;
     }
@@ -218,6 +250,22 @@
     .menuNavbar {
         position: relative;
         top: 12px;
+        opacity: 0;
+        height: 0;
+        overflow: visible;
+    }
+
+    .showDropdown {
+        opacity: 1;
+        height: auto;
+    }
+
+    .userIcon {
+        display: none;
+    }
+
+    .showUserIcon {
+        display: block;
     }
 }
 

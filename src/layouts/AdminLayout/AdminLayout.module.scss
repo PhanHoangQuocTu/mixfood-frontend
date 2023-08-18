@@ -6,6 +6,12 @@
     flex-direction: column;
     width: 30%;
     height: 100vh;
+    transform: translateX(-100%); /* Ban đầu ẩn bên ngoài màn hình */
+    transition: transform 0.4s ease;
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Hiển thị sidebar */
 }
 
 .closeButton {
@@ -27,7 +33,6 @@
         width: 60%;
     }
 }
-
 
 @media (max-width: 568px) {
     .sidebar {

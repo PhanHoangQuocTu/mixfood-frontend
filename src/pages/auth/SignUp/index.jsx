@@ -1,53 +1,53 @@
-import { memo } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 import classNames from 'classnames';
 import InputForm from '@/components/InputForm';
-import axios from 'axios';
-
-import 'react-toastify/dist/ReactToastify.css';
-import styles from './SignUp.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
+
+import styles from './SignUp.module.scss';
+
+const validationSchema = yup.object().shape({
+  name: yup.string().required('Vui lòng nhập tên'),
+  phone: yup
+    .string()
+    .required('Số điện thoại là bắt buộc')
+    .matches(/^(0|\+84)[1-9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
+  email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
+  password: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu'),
+  confirmPassword: yup.string()
+    .oneOf([yup.ref('password'), null], 'Mật khẩu xác nhận phải giống mật khẩu')
+    .required('Vui lòng nhập lại mật khẩu'),
+});
 
 function SignUp() {
   const navigate = useNavigate();
-  const validationSchema = yup.object().shape({
-    name: yup.string().required('Vui lòng nhập tên'),
-    phone: yup
-      .string()
-      .required('Số điện thoại là bắt buộc')
-      .matches(/^(0|\+84)[1-9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
-    email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
-    password: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu'),
-    confirmPassword: yup.string()
-      .oneOf([yup.ref('password'), null], 'Mật khẩu xác nhận phải giống mật khẩu')
-      .required('Vui lòng nhập lại mật khẩu'),
-  });
-
   const methods = useForm({
     resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = async (data) => {
+    const transformedData = {
+      ...data,
+      email: data.email.toLowerCase(),
+    };
     try {
-      // Gửi dữ liệu đăng ký đi
-      const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-up', data);
+      const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-up', transformedData);
       if (response) {
-        toast.success('Đăng ký tài khoản thành công.')
-        toast.success('Chúng tôi đã gửi mã xác thực vào gmail. Hãy xác thực để tiếp tục sử dụng dịch vụ.')
-        toast.warn('Mã xác thực sẽ gửi đến bạn trong khoảng 1-2 phút.')
+        toast.success('Đăng ký tài khoản thành công.');
+        toast.success('Chúng tôi đã gửi mã xác thực vào gmail. Hãy xác thực để tiếp tục sử dụng dịch vụ.');
+        toast.warn('Mã xác thực sẽ gửi đến bạn trong khoảng 1-2 phút.');
         setTimeout(() => {
-          navigate('/signin')
-        }, 3000)
+          navigate('/signin');
+        }, 3000);
       }
-
     } catch (error) {
-      toast.error(error.response.data.error)
+      toast.error(error.response.data.error);
     }
   };
-
 
   return (
     <FormProvider {...methods}>
@@ -134,4 +134,4 @@ function SignUp() {
   );
 }
 
-export default memo(SignUp);
+export default React.memo(SignUp);

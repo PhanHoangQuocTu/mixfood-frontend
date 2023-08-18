@@ -27,8 +27,12 @@ function AdminLoginForm() {
     const { handleSubmit } = methods;
 
     const onSubmit = async (data) => {
+        const transformedData = {
+            ...data,
+            email: data.email.toLowerCase(),
+        };
         try {
-            const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-in', data);
+            const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-in', transformedData);
             const user = response.data;
             if (user) {
                 if (user.rules === true) {
