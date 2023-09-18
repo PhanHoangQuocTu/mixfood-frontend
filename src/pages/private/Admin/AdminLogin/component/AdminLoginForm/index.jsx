@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const schema = Yup.object().shape({
     email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
@@ -34,8 +35,13 @@ function AdminLoginForm() {
         try {
             const response = await axios.post('https://mixfood-be-production.up.railway.app/api/auth/sign-in', transformedData);
             const user = response.data;
+            console.log(user)
             if (user) {
                 if (user.rules === true) {
+                    const isLoginByAdmin = {
+                        isLogin: true
+                    }
+                    Cookies.set('admin', isLoginByAdmin)
                     toast.success('Đăng nhập thành công');
                     setTimeout(() => {
                         navigate('/admin/home')

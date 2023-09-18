@@ -255,6 +255,12 @@
         overflow: visible;
     }
 
+    .hide {
+        opacity: 0;
+        height: 0;
+        overflow: visible;
+    }
+
     .showDropdown {
         opacity: 1;
         height: auto;

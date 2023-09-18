@@ -89,15 +89,15 @@ function Header() {
                                 <FontAwesomeIcon icon={faAngleDown} />
                             </span>
                             <div className={classNames(styles.menuNavbar, 'pl-[16px]', { [styles.showDropdown]: dropdownActive === true })}>
-                                <div className={classNames('flex', 'items-center', 'gap-[12px]')}>
+                                <div className={classNames(styles.hide, 'flex', 'items-center', 'gap-[12px]', { [styles.showDropdown]: dropdownActive === true })}>
                                     <FontAwesomeIcon icon={faAngleRight} />
                                     <a href='https://shopeefood.vn/da-nang/mix-food-lau-nuong' className={classNames(styles.navbarLink)} >Shopeefood</a>
                                 </div>
-                                <div className={classNames('flex', 'items-center', 'gap-[12px]')}>
+                                <div className={classNames(styles.hide, 'flex', 'items-center', 'gap-[12px]', { [styles.showDropdown]: dropdownActive === true })}>
                                     <FontAwesomeIcon icon={faAngleRight} />
                                     <a href='https://food.grab.com/vn/vi/restaurant/mix-food-%E1%BA%A9m-th%E1%BB%B1c-th%C3%A1i-delivery/5-C2DHA6LJLJVZJX' className={classNames(styles.navbarLink)} >Grabfood</a>
                                 </div>
-                                <div className={classNames('flex', 'items-center', 'gap-[12px]')}>
+                                <div className={classNames(styles.hide, 'flex', 'items-center', 'gap-[12px]', { [styles.showDropdown]: dropdownActive === true })}>
                                     <FontAwesomeIcon icon={faAngleRight} />
                                     <a href='https://www.facebook.com/messages/t/661843517545518' className={classNames(styles.navbarLink)} >Fanpage</a>
                                 </div>

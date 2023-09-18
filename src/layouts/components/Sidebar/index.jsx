@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './Sidebar.module.scss';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 function Sidebar() {
   const location = useLocation();
@@ -15,6 +16,13 @@ function Sidebar() {
     fetchUnconfirmedHireCount();
   }, []);
 
+  const handleLogout = () => {
+    const admin = Cookies.get('admin')
+    if (admin) {
+      Cookies.remove('admin')
+      window.location.reload()
+    }
+  }
   const fetchUncheckedBookingCount = async () => {
     try {
       const response = await axios.get('https://mixfood-be-production.up.railway.app/api/admin/getUncheckedBookingCount');
@@ -79,7 +87,7 @@ function Sidebar() {
           Đánh giá
         </Link>
       </div>
-      <Link to={'/'} className={classNames(styles.item)}>
+      <Link onClick={handleLogout} className={classNames(styles.item)}>
         Đăng xuất
       </Link>
     </div>

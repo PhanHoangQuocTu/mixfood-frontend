@@ -4,10 +4,20 @@ import classNames from "classnames";
 import Sidebar from "../components/Sidebar";
 
 import styles from './AdminLayout.module.scss';
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function AdminLayout({ children }) {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const layoutRef = useRef(null);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const admin = Cookies.get('admin');
+    if (!admin) {
+      navigate('/admin')
+    }
+  }, [navigate])
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
